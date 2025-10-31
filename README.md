@@ -35,54 +35,72 @@ flowchart TB
 ```
 ### Infrastructure Components
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Hypervisor** | VMware Workstation Pro 17 | Isolated virtual network environment |
-| **SIEM Platform** | Splunk Enterprise 10.0.1 | Centralized log collection and analysis |
-| **Indexer** | Debian 13 (8GB RAM, 4 vCPU, 80GB) | Event storage and processing |
-| **Windows Endpoint** | Windows 10 | Monitored workstation generating events |
-| **Linux Endpoint** | Ubuntu | Server monitoring and Linux security events |
-| **Attack Platform** | Kali Linux | Penetration testing and attack simulation |
-| **Network** | Host-Only VMnet (isolated) | Secure environment |
+**Stack:**
+- **SIEM**: Splunk Enterprise on Debian 13
+- **Endpoints**: Windows + Linux 
+- **Attack Platform**: Kali Linux
+- **Network**: Isolated VMware Host-Only
 
 ---
 
-## 🔧 Implementation Details
+## 🔍 Key Features
 
-### 1. SIEM Infrastructure Setup
+✅ Multi-platform log collection (Windows, Linux)  
+✅ Custom detection rules and dashboards  
+✅ Isolated network for safe testing  
+✅ Real-world attack simulations  
+✅ MITRE ATT&CK framework mapping  
 
-**Splunk Enterprise Configuration:**
-```bash
-# Installed on Debian 13
-- Version: 10.0.1
-- License: Enterprise Trial → Free (500 MB/day)
-- Listening Port: 9997 (receiving logs)
-- Web Interface: 8000
-```
+## 📊 Use Cases
 
-**Index Strategy:**
-- `windows_logs`: Windows Event Logs (Security, System, Application)
-- `linux_logs`: Syslog, auth logs, system events
-- `network_logs`: Firewall, IDS/IPS, network traffic
-- `attack_logs`: Penetration testing results and IOCs
-
-**Firewall Configuration:**
-```bash
-ufw allow 22/tcp    # SSH management
-ufw allow 8000/tcp  # Splunk Web UI
-ufw allow 9997/tcp  # Log receiving port
-```
+| Scenario | Detection Method |
+|----------|-----------------|
+| **Brute Force** | Failed login threshold monitoring |
+| **Privilege Escalation** | Unusual sudo/admin activity |
+| **Lateral Movement** | Abnormal network connections |
+| **Malware Execution** | Suspicious process creation |
 
 ---
 
-### 2. Endpoint Monitoring
+## 🎓 Skills Demonstrated
 
-**Windows Endpoint:**
-- **Agent**: Splunk Universal Forwarder
-- **Service Account**: Virtual Account (least privilege)
-- **Privileges**: SeBackupPrivilege, SeSecurityPrivilege
-- **Data Sources**:
-  - Security Event Log (authentication, privilege escalation)
-  - System Event Log (services, drivers, hardware)
-  - Application Event Log (software errors, crashes)
-  - Performance Counters (CPU, memory anomalies)
+**SIEM**: Splunk deployment, SPL queries, dashboards  
+**Detection**: Custom rules, correlation, alerting  
+**Analysis**: Log investigation, timeline reconstruction  
+**Offensive**: Kali Linux, attack simulation, TTPs  
+
+---
+
+## 📚 Documentation
+
+Detailed setup guides and playbooks available in [`/docs`](./docs):
+- [Installation Guide](docs/installation.md)
+- [Detection Rules](docs/detection-rules.md)
+- [SPL Cheat Sheet](docs/spl-cheatsheet.md)
+- [Attack Scenarios](docs/attack-scenarios.md)
+
+---
+
+## 📈 Roadmap
+
+- [x] SIEM infrastructure setup
+- [x] Multi-platform log collection
+- [ ] Custom detection rules library
+- [ ] Automated alerting system
+- [ ] Attack simulation scenarios
+- [ ] SOAR integration
+
+---
+
+## 🤝 Connect
+
+**LinkedIn**: [Your Profile](https://www.linkedin.com/in/malo-martin/)  
+**Email**: malomartin.contact@gmail.com
+
+---
+
+*Built for cybersecurity learning and career development* 🔐
+
+
+
+
