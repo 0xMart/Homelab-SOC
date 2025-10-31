@@ -4,9 +4,9 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 ## 🧩 Architecture
 ```mermaid
 flowchart LR
-    A[Generate Events] -->|Forward| B[Splunk SIEM]
-    B -->|Query & Analyze| C[Detect Threats]
-    C --> D[Practice Investigation]
+    A["⚔️ Launch Attacks"] -->|Generate Logs| B["📊 Splunk SIEM"]
+    B -->|Create Queries| C["🔎 Threat Detection"]
+    C -->|Practice| D["🎓 SOC Skills"]
     
     style A fill:#34495e,stroke:#2c3e50,stroke-width:3px,color:#fff
     style B fill:#27ae60,stroke:#229954,stroke-width:3px,color:#fff
