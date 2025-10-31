@@ -33,3 +33,16 @@ flowchart TB
     style Analyze fill:#f39c12,stroke:#e67e22,stroke-width:3px,color:#fff
     style Learn fill:#27ae60,stroke:#229954,stroke-width:3px,color:#fff
 ```
+### Infrastructure Components
+
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| **Hypervisor** | VMware Workstation Pro 17 | Isolated virtual network environment |
+| **SIEM Platform** | Splunk Enterprise 10.0.1 | Centralized log collection and analysis |
+| **Indexer** | Debian 13 (8GB RAM, 4 vCPU, 80GB) | Event storage and processing |
+| **Windows Endpoint** | Windows 10/11 + Universal Forwarder | Monitored workstation generating events |
+| **Linux Endpoint** | Ubuntu/Debian + Universal Forwarder | Server monitoring and Linux security events |
+| **Attack Platform** | Kali Linux | Penetration testing and attack simulation |
+| **Network** | Host-Only VMnet (isolated) | Secure, air-gapped lab environment |
+
+---
