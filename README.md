@@ -5,6 +5,16 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 ![Splunk](https://img.shields.io/badge/SIEM-Splunk-green)
 ![Platform](https://img.shields.io/badge/platform-VMware-blue)
 
+## 🎯 Project Objectives
+
+This lab simulates a production SOC environment to develop hands-on experience in:
+
+- **Log Management**: Centralized collection and normalization of security events
+- **Threat Detection**: Real-time monitoring and alerting on suspicious activities
+- **Incident Response**: Investigation and remediation of security incidents
+- **Attack Simulation**: Controlled penetration testing for realistic threat scenarios
+- **SIEM Mastery**: Advanced Splunk queries (SPL), dashboards, and correlation rules
+
 ## 🧩 Architecture
 ```mermaid
 flowchart TB
