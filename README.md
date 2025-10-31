@@ -46,3 +46,43 @@ flowchart TB
 | **Network** | Host-Only VMnet (isolated) | Secure environment |
 
 ---
+
+## 🔧 Implementation Details
+
+### 1. SIEM Infrastructure Setup
+
+**Splunk Enterprise Configuration:**
+```bash
+# Installed on Debian 13
+- Version: 10.0.1
+- License: Enterprise Trial → Free (500 MB/day)
+- Listening Port: 9997 (receiving logs)
+- Web Interface: 8000
+```
+
+**Index Strategy:**
+- `windows_logs`: Windows Event Logs (Security, System, Application)
+- `linux_logs`: Syslog, auth logs, system events
+- `network_logs`: Firewall, IDS/IPS, network traffic
+- `attack_logs`: Penetration testing results and IOCs
+
+**Firewall Configuration:**
+```bash
+ufw allow 22/tcp    # SSH management
+ufw allow 8000/tcp  # Splunk Web UI
+ufw allow 9997/tcp  # Log receiving port
+```
+
+---
+
+### 2. Endpoint Monitoring
+
+**Windows Endpoint:**
+- **Agent**: Splunk Universal Forwarder
+- **Service Account**: Virtual Account (least privilege)
+- **Privileges**: SeBackupPrivilege, SeSecurityPrivilege
+- **Data Sources**:
+  - Security Event Log (authentication, privilege escalation)
+  - System Event Log (services, drivers, hardware)
+  - Application Event Log (software errors, crashes)
+  - Performance Counters (CPU, memory anomalies)
