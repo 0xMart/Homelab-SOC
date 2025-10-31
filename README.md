@@ -3,29 +3,15 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 
 ## 🧩 Architecture
 ```mermaid
-graph LR
-    subgraph sources["Data Sources"]
-        W[Windows]
-        L[Linux]
-        K[Kali]
-    end
+flowchart LR
+    A[("🎯<br/>Attack<br/>Surface")]
+    B[("📊<br/>SIEM<br/>Platform")]
+    C[("🔍<br/>Threat<br/>Hunting")]
     
-    subgraph siem["SIEM"]
-        S[Splunk]
-    end
+    A -->|Security Events| B
+    B -->|Detection Rules| C
     
-    subgraph analysis["Analysis"]
-        A[Me]
-    end
-    
-    W & L -->|logs| S
-    K -.->|attacks| W
-    K -.->|attacks| L
-    S -->|investigate| A
-    
-    style W fill:#0078d4,stroke:#005a9e,stroke-width:2px,color:#fff
-    style L fill:#ff6c00,stroke:#cc5500,stroke-width:2px,color:#fff
-    style K fill:#000,stroke:#00ff00,stroke-width:2px,color:#0f0
-    style S fill:#00b388,stroke:#008f6c,stroke-width:3px,color:#fff
-    style A fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#fff
+    style A fill:#24292e,stroke:#586069,stroke-width:4px,color:#f0f6fc
+    style B fill:#238636,stroke:#2ea043,stroke-width:4px,color:#ffffff
+    style C fill:#0969da,stroke:#1f6feb,stroke-width:4px,color:#ffffff
 ```
