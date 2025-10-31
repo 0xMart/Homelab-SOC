@@ -94,7 +94,7 @@ Detailed setup guides and playbooks available in [`/docs`](./docs):
 
 ## 🤝 Connect
 
-**LinkedIn**: [Your Profile](https://www.linkedin.com/in/malo-martin/)  
+**LinkedIn**: [Me](https://www.linkedin.com/in/malo-martin/)  
 **Email**: malomartin.contact@gmail.com
 
 ---
