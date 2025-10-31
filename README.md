@@ -3,13 +3,31 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 
 ## 🧩 Architecture
 ```mermaid
-flowchart LR
-    A["⚔️ Launch Attacks"] -->|Generate Logs| B["📊 Splunk SIEM"]
-    B -->|Create Queries| C["🔎 Threat Detection"]
-    C -->|Practice| D["🎓 SOC Skills"]
+graph TB
+    subgraph lab["🏠 Home Lab Environment"]
+        subgraph attack["Attack Infrastructure"]
+            kali["🐉 Kali Linux<br/>Penetration Testing"]
+        end
+        
+        subgraph targets["Target Systems"]
+            win["💻 Windows<br/>Endpoint"]
+            linux["🐧 Linux<br/>Server"]
+        end
+        
+        subgraph monitoring["Security Monitoring"]
+            splunk["🔍 Splunk Enterprise<br/>SIEM Platform"]
+        end
+    end
     
-    style A fill:#34495e,stroke:#2c3e50,stroke-width:3px,color:#fff
-    style B fill:#27ae60,stroke:#229954,stroke-width:3px,color:#fff
-    style C fill:#f39c12,stroke:#e67e22,stroke-width:3px,color:#fff
-    style D fill:#e74c3c,stroke:#c0392b,stroke-width:3px,color:#fff
+    kali -.->|Attacks| win
+    kali -.->|Attacks| linux
+    win -->|Logs| splunk
+    linux -->|Logs| splunk
+    splunk -->|Analysis| analyst["👤 Security Analyst<br/>(Me)"]
+    
+    style kali fill:#1a1a1a,stroke:#00ff00,stroke-width:3px,color:#fff
+    style win fill:#0078d4,stroke:#005a9e,stroke-width:3px,color:#fff
+    style linux fill:#ff6c00,stroke:#cc5500,stroke-width:3px,color:#fff
+    style splunk fill:#00b388,stroke:#008f6c,stroke-width:3px,color:#fff
+    style analyst fill:#e74c3c,stroke:#c0392b,stroke-width:3px,color:#fff
 ```
