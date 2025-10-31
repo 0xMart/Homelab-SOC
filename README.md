@@ -3,15 +3,19 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 
 ## 🧩 Architecture
 ```mermaid
-flowchart LR
-    A[("🎯<br/>Attack<br/>Surface")]
-    B[("📊<br/>SIEM<br/>Platform")]
-    C[("🔍<br/>Threat<br/>Hunting")]
+flowchart TB
+    Attack["⚔️ Attack Simulation"]
+    Collect["📥 Log Collection"]
+    Analyze["🔍 Threat Analysis"]
+    Learn["🎓 Skill Development"]
     
-    A -->|Security Events| B
-    B -->|Detection Rules| C
+    Attack --> Collect
+    Collect --> Analyze
+    Analyze --> Learn
+    Learn -.->|iterate| Attack
     
-    style A fill:#24292e,stroke:#586069,stroke-width:4px,color:#f0f6fc
-    style B fill:#238636,stroke:#2ea043,stroke-width:4px,color:#ffffff
-    style C fill:#0969da,stroke:#1f6feb,stroke-width:4px,color:#ffffff
+    style Attack fill:#e74c3c,stroke:#c0392b,stroke-width:3px,color:#fff
+    style Collect fill:#3498db,stroke:#2980b9,stroke-width:3px,color:#fff
+    style Analyze fill:#f39c12,stroke:#e67e22,stroke-width:3px,color:#fff
+    style Learn fill:#27ae60,stroke:#229954,stroke-width:3px,color:#fff
 ```
