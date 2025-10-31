@@ -1,6 +1,10 @@
 # Homelab-SOC
 SOC home lab for learning and practicing SOC analyst skills: log collection, detection, threat hunting, incident response, and automation.
 
+![Lab Status](https://img.shields.io/badge/status-active-success)
+![Splunk](https://img.shields.io/badge/SIEM-Splunk-green)
+![Platform](https://img.shields.io/badge/platform-VMware-blue)
+
 ## 🧩 Architecture
 ```mermaid
 flowchart TB
