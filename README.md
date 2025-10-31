@@ -4,31 +4,35 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 ## 🧩 Architecture
 ```mermaid
 flowchart TB
-    subgraph Host_Network["Host-Only VMnet (isolated)"]
-        direction TB
-        Win["Windows Host\n(Splunk Universal Forwarder)"]
-        Kali["Kali Linux\n(Attacker) (TODO)"]
-        Ubuntu["Ubuntu Desktop\n(Endpoint) (TODO)"]
+    subgraph endpoints["🖥️ Endpoints"]
+        direction LR
+        win["Windows"]
+        linux["Linux"]
+        kali["Attack Machine"]
     end
 
-    subgraph Splunk_Server["Debian 13 - Splunk Enterprise\n192.168.84.130"]
+    subgraph siem["🔍 SIEM Platform"]
         direction TB
-        SplunkWeb["Splunk Web UI :8000"]
-        SplunkRecv["Splunk Receiving :9997"]
-        Indexes["Indexes: windows_logs, linux_logs, network_logs"]
+        collector["Log Collector"]
+        storage["Data Storage"]
+        analysis["Analysis & Visualization"]
     end
 
-    %% Forwarding / Flows
-    Win -->|Forward logs :9997| SplunkRecv
-    Ubuntu -.->|Forward logs UF/Filebeat TODO| SplunkRecv
-    Kali -.->|Attack traffic TODO| Win
-    Kali -.->|Attack traffic TODO| Ubuntu
+    subgraph soc["👤 SOC Analyst"]
+        direction TB
+        monitoring["Monitoring"]
+        investigation["Investigation"]
+        response["Incident Response"]
+    end
 
-    %% Splunk data flow
-    SplunkRecv --> Indexes
-    Indexes --> SplunkWeb
-    SplunkWeb -->|Dashboards & Alerts| Analyst["SOC Analyst"]
+    endpoints -->|Logs & Events| collector
+    collector --> storage
+    storage --> analysis
+    analysis --> monitoring
+    monitoring --> investigation
+    investigation --> response
 
-    classDef simple fill:#f8f8fa,stroke:#111,stroke-width:1px;
-    class Host_Network,Splunk_Server simple;
+    style endpoints fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#ecf0f1
+    style siem fill:#27ae60,stroke:#229954,stroke-width:2px,color:#ecf0f1
+    style soc fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#ecf0f1
 ```
