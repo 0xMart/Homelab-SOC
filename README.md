@@ -51,17 +51,6 @@ flowchart TB
 ✅ Real-world attack simulations  
 ✅ MITRE ATT&CK framework mapping  
 
-## 📊 Use Cases
-
-| Scenario | Detection Method |
-|----------|-----------------|
-| **Brute Force** | Failed login threshold monitoring |
-| **Privilege Escalation** | Unusual sudo/admin activity |
-| **Lateral Movement** | Abnormal network connections |
-| **Malware Execution** | Suspicious process creation |
-
----
-
 ## 🎓 Skills Demonstrated
 
 **SIEM**: Splunk deployment, SPL queries, dashboards  
