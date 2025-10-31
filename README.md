@@ -3,31 +3,32 @@ SOC home lab for learning and practicing SOC analyst skills: log collection, det
 
 ## 🧩 Architecture
 ```mermaid
-graph TB
-    subgraph lab["🏠 Home Lab Environment"]
-        subgraph attack["Attack Infrastructure"]
-            kali["🐉 Kali Linux<br/>Penetration Testing"]
-        end
-        
-        subgraph targets["Target Systems"]
-            win["💻 Windows<br/>Endpoint"]
-            linux["🐧 Linux<br/>Server"]
-        end
-        
-        subgraph monitoring["Security Monitoring"]
-            splunk["🔍 Splunk Enterprise<br/>SIEM Platform"]
-        end
+flowchart TB
+    subgraph layer3["🎯 Analysis Layer"]
+        me["Security Analyst"]
     end
     
-    kali -.->|Attacks| win
-    kali -.->|Attacks| linux
-    win -->|Logs| splunk
-    linux -->|Logs| splunk
-    splunk -->|Analysis| analyst["👤 Security Analyst<br/>(Me)"]
+    subgraph layer2["⚙️ Processing Layer"]
+        splunk["Splunk SIEM"]
+    end
     
-    style kali fill:#1a1a1a,stroke:#00ff00,stroke-width:3px,color:#fff
-    style win fill:#0078d4,stroke:#005a9e,stroke-width:3px,color:#fff
-    style linux fill:#ff6c00,stroke:#cc5500,stroke-width:3px,color:#fff
-    style splunk fill:#00b388,stroke:#008f6c,stroke-width:3px,color:#fff
-    style analyst fill:#e74c3c,stroke:#c0392b,stroke-width:3px,color:#fff
+    subgraph layer1["📡 Data Sources"]
+        direction LR
+        kali["Kali<br/>(Attacker)"]
+        windows["Windows"]
+        linux["Linux"]
+    end
+    
+    kali -.->|exploits| windows
+    kali -.->|attacks| linux
+    
+    windows -->|events| splunk
+    linux -->|logs| splunk
+    
+    splunk -->|dashboards| me
+    
+    style layer1 fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#ecf0f1
+    style layer2 fill:#27ae60,stroke:#229954,stroke-width:2px,color:#ecf0f1
+    style layer3 fill:#e74c3c,stroke:#c0392b,stroke-width:2px,color:#ecf0f1
+    style kali fill:#000,stroke:#00ff00,stroke-width:3px,color:#0f0
 ```
