@@ -105,7 +105,7 @@ Subnet Mask: 255.255.255.0
 ☐ Connect host adapter
 ```
 
-![Screenshot: VMnet8 configuration](../Pictures/vmware-vmnet8.png)
+![Screenshot: VMnet8 configuration](../Pictures/vmware-vmnet8.PNG)
 
 6. Click `OK`
 
@@ -120,7 +120,7 @@ ipconfig | Select-String "VMnet8" -Context 0,4
 
 **Expected output:**
 
-![VMnet8 IP Configuration](../Pictures/host-vmnet8-config.png)
+![VMnet8 IP Configuration](../Pictures/host-vmnet8-config.PNG)
 ```
 No output → VMnet8 adapter does not exist on host
 → Kali cannot ping or attack your PC
