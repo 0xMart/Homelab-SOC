@@ -120,7 +120,7 @@ ipconfig | Select-String "VMnet8" -Context 0,4
 
 **Expected output:**
 
-![VMnet8 IP Configuration](../images/vmware-vmnet8-ipconfig.png)
+![VMnet8 IP Configuration](../pictures/host-vmnet8-config.png)
 ```
 No output → VMnet8 adapter does not exist on host
 → Kali cannot ping or attack your PC
@@ -165,7 +165,7 @@ Map localhost:8000 → Splunk VM
 | Field| Value|
 |--------|--------|
 | **Host port** | 8000 |
-| **Guest ip* | 192.168.84.130 |
+| **Guest ip** | 192.168.84.130 |
 | **Guest port** | 8000 |
 | **Protocol** | TCP |
 
