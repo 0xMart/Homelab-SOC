@@ -171,4 +171,4 @@ Map localhost:8000 → Splunk VM
 
 5. Click `OK` → Start VM
 
-> - Now you can acess on you host at splunk UI (http://localhost:8000)
+> -  Now you can acess at splunk UI on your host (http://localhost:8000)
