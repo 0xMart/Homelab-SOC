@@ -165,7 +165,7 @@ Map localhost:8000 → Splunk VM
 | Field| Value|
 |--------|--------|
 | **Host port** | 8000 |
-| **Guest ip* | 192.168.84.130 |
+| **Guest ip** | 192.168.84.130 |
 | **Guest port** | 8000 |
 | **Protocol** | TCP |
 
