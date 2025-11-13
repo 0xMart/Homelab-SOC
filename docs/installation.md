@@ -154,13 +154,20 @@ No output → VMnet8 adapter does not exist on host
 
 ![Screenshot: VM network settings](../Pictures/VM-newtwork-setting.PNG)
 
-### 1.5 Enable Port Forwarding (Access Splunk from Host)
+### 1.5 Access Splunk from Host
 
-Map localhost:8000 → Splunk VM
 1. Power off splunk-server
-2. Right-click `VM → Settings → Network Adapter`
-3. Check: ☑ Enable port forwarding
-4. Click Port `Forwarding… → Add`
+2. Right-click `VM → Settings → add Network Adapter`
+3. Check: ☑ NAT
+ → Cela crée une interface uniquement dédiée à l’accès Splunk depuis l’hôte, sans exposer tout le réseau du lab.
+
+4. **Démarrer la VM Splunk**
+
+5. **Afficher l'adresse NAT depuis la VM :**
+   ```bash
+   ip a
+
+
 
 | Field| Value|
 |--------|--------|
