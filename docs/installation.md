@@ -188,5 +188,17 @@ We’ll use this IP plan:
 2. Check interfaces:
 
    ```bash
-   ip -br a```
+   ip -br a
+   ```
+   You should see something like:
+
+- **ens33 → NAT** (192.168.101.x via DHCP)
+- **ens37 → Internal** (no IP yet)
+
+### Configure the internal NIC:
+
+1. Bring the interface up:
+
+   ```bash
+   sudo ip link set ens37 up
 
