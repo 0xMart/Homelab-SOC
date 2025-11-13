@@ -134,10 +134,10 @@ No output → VMnet8 adapter does not exist on host
 | Device | IP Address | Hostname | Role |
 |--------|------------|----------|------|
 | **Windows Host** | none | (Your PC) | VMware hypervisor + Splunk UI |
-| **Debian VM** | 192.168.101.128 | 10.10.10.10 | splunk-server | SIEM platform |
+| **Debian VM** | 192.168.101.128 / 10.10.10.10 | splunk-server | SIEM platform |
 | **Windows 10 VM** | 192.168.84.50 | win10-endpoint | Monitored endpoint |
-| **Ubuntu VM** | 192.168.84.30 | ubuntu-endpoint | Monitored endpoint |
-| **Kali VM** | 192.168.84.100 | kali-attacker | Attack simulation |
+| **Ubuntu VM** | 10.10.10.12 | ubuntu-endpoint | Monitored endpoint |
+| **Kali VM** | 10.10.10.11 | kali-attacker | Attack simulation |
 
 > ⚠️ **Security Note:**  
 > - The physical host is used ONLY for VMware and accessing Splunk Web UI  
