@@ -152,7 +152,7 @@ No output → VMnet8 adapter does not exist on host
 1. Right-click VM → Settings → Network Adapter
 2. Select: `Custom: VMnet8 (Host-only)`
 
-![Screenshot: VM network settings](../Pictures/VM newtwork setting.PNG)
+![Screenshot: VM network settings](../Pictures/VM-newtwork-setting.PNG)
 
 ### 1.5 Enable Port Forwarding (Access Splunk from Host)
 
