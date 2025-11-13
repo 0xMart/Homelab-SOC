@@ -210,5 +210,5 @@ http://192.168.101.128:8000
 ```
 
 ---
-### Install Splunk Enterprise
+- [2. Splunk Server Setup](#2-splunk-server-setup)
 
