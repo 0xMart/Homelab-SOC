@@ -203,12 +203,23 @@ We’ll use this IP plan:
    sudo ip link set ens37 up
    sudo ip addr add 10.10.10.10/24 dev ens37
    ```
-You will later access Splunk Web using:
+   You will later access Splunk Web using:
 
-```
-http://192.168.101.128:8000
-```
+   ```
+   http://192.168.101.128:8000
+   ```
 
 ---
 ## 2 splunk server setup
 
+This section covers the complete installation and configuration of your Splunk Enterprise server on Debian 13.
+
+---
+
+### 2.1 Update System
+
+Before installing Splunk, update your Debian system:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
