@@ -182,3 +182,11 @@ We’ll use this IP plan:
 > - All monitored endpoints and attacks happen in isolated VMs  
 > - This protects your main system from attack simulations
 ---
+#### Splunk Server 
+
+1. Boot the Debian Splunk server
+2. Check interfaces:
+
+   ```bash
+   ip -br a```
+
