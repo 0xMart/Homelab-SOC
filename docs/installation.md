@@ -210,29 +210,82 @@ We’ll use this IP plan:
    ```
 
 ---
-## 2 splunk server setup
+## 2. Splunk Server Setup
 
-This section covers the complete installation and configuration of your Splunk Enterprise server on Debian 13.
+This section covers the complete installation and configuration of Splunk Enterprise on Debian 13.
 
-### 2.1 Download and Install Splunk Enterprise
+### 2.1 System Prerequisites
 
-1. Download the Splunk Enterprise .deb package from the official website or use wget:
-
+Ensure your system is up to date before proceeding:
 ```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+### 2.2 Download Splunk Enterprise
+
+Download the latest Splunk Enterprise package from the official repository:
+```bash
+cd /tmp
 wget -O splunk-10.0.1-c486717c322b-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/10.0.1/linux/splunk-10.0.1-c486717c322b-linux-amd64.deb"
 ```
-2. Install the package:
+
+> **Note:** Visit [Splunk Downloads](https://www.splunk.com/en_us/download/splunk-enterprise.html) to get the latest version URL.
+
+### 2.3 Install Splunk Enterprise
+
+Install the downloaded package:
 ```bash
 sudo dpkg -i splunk-10.0.1-c486717c322b-linux-amd64.deb
 ```
-2.2 Start Splunk and Accept License
-Navigate to the Splunk installation directory and start Splunk for the first time:
+
+Verify the installation:
 ```bash
-cd /opt/splunk/bin
-sudo ./splunk start --accept-license
+ls -la /opt/splunk
 ```
-During the first start, you'll be prompted to create an admin account:
 
-- Username: admin
-- Password: Choose a strong password (min. 8 characters)
+### 2.4 Initial Configuration
 
+#### 2.4.1 Start Splunk and Accept License
+
+Navigate to the Splunk binary directory and start the service:
+```bash
+
+sudo /opt/splunk/bin/splunk start --accept-license
+```
+
+#### 2.4.2 Create Admin Account
+
+During the first startup, you will be prompted to create an administrator account:
+
+- **Username:** `admin`
+- **Password:** Must be at least 8 characters (use a strong password)
+
+Example output:
+```
+Please enter an administrator username: admin
+Please enter a new password: ********
+Please confirm new password: ********
+```
+
+### 2.5 Enable Splunk at Boot
+
+Configure Splunk to start automatically on system boot:
+```bash
+sudo /opt/splunk/bin/splunk enable boot-start
+```
+
+Verify the service status:
+```bash
+sudo /opt/splunk/bin/splunk status
+```
+
+### 2.6 Access Splunk Web Interface
+
+Once started, access the Splunk Web interface:
+```
+http://192.168.101.128:8000
+```
+
+Login with the credentials created in step 2.4.2.
+
+---
