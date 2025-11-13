@@ -192,7 +192,7 @@ We’ll use this IP plan:
    ```
    You should see something like:
 
-- **ens33 → NAT** (192.168.101.x via DHCP)
+- **ens33 → NAT** (192.168.101.128 via DHCP)
 - **ens37 → Internal** (no IP yet)
 
 ### Configure the internal NIC:
@@ -201,4 +201,14 @@ We’ll use this IP plan:
 
    ```bash
    sudo ip link set ens37 up
+   sudo ip addr add 10.10.10.10/24 dev ens37
+   ```
+You will later access Splunk Web using:
+
+```
+http://192.168.101.128:8000
+```
+
+---
+### Install Splunk Enterprise
 
