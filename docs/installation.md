@@ -82,100 +82,103 @@ Complete step-by-step guide to build your own SOC home lab.
 
 ## 1. VMware Network Setup
 
+Goal:
+
+- One **NAT network** (for Splunk Web + internet on the Splunk server)
+- One **Host-Only network** (for internal traffic + logs + attacks)
+- The **host is NOT reachable** from the internal lab network
+
 ### 1.1 Create Host-Only Network
 
 **Create an isolated network for the lab (no internet access).**
 
-**Steps:**
+This network will be used for:
 
-1. Open VMware Workstation
-2. Go to `Edit → Virtual Network Editor`
-3. Click `Change Settings` (Administrator required)
-4. Select **VMnet8** in the list
-5. Change type from `NAT` to `Host-only`
+- Kali ↔ Windows ↔ Ubuntu ↔ Splunk (internal traffic)
+- Universal Forwarders sending logs to Splunk
 
-> **Note:** Lab uses NAT for internet access (system updates, package downloads).  
-> For full isolation, switch to Host-Only after initial setup.
+1. Open **VMware Workstation**
+2. Go to **Edit → Virtual Network Editor**
+3. Click **Change Settings** (Run as Administrator)
+4. Select **VMnet1**
+5. Configure VMnet1 as:
 
-```
-Type: Host-only
-Subnet IP: 192.168.84.0
-Subnet Mask: 255.255.255.0
-☐ Use local DHCP (unchecked)
-☐ Connect host adapter
-```
+   - **Type:** Host-only
+   - **Subnet IP:** `10.10.10.0`
+   - **Subnet mask:** `255.255.255.0`
+   - **Use local DHCP:** unchecked (we will use static IPs)
+   - **Connect a host virtual adapter to this network:** checked
 
-![Screenshot: VMnet8 configuration](../Pictures/vmware-vmnet8.PNG)
+> The host adapter must stay enabled so the virtual switch remains active.  
+> We will isolate the host in a later step by removing its IP.
 
-6. Click `OK`
+Click **Apply**, then **OK**.
 
 ---
 
 ### 1.2 Verify Configuration
 
-**On your Windows host PC, verify the VMnet8 adapter:**
-```powershell
-ipconfig | Select-String "VMnet8" -Context 0,4
-```
+VMnet8 is the default NAT network. It will be used **only** for:
 
-**Expected output:**
+- Internet access on the Splunk server
+- Accessing Splunk Web from the host
 
-![VMnet8 IP Configuration](../Pictures/host-vmnet8-config.PNG)
-```
-No output → VMnet8 adapter does not exist on host
-→ Kali cannot ping or attack your PC
-```
+1. In **Virtual Network Editor**, select **VMnet8**
+2. Make sure it is configured as:
+
+   - **Type:** NAT
+   - **DHCP:** enabled
+   - **Subnet IP:** (example) `192.168.101.0`
+   - **Subnet mask:** `255.255.255.0`
+   - Click **NAT Settings…** and confirm:
+     - **Gateway IP:** e.g. `192.168.101.2`
+
+Click **Apply**, then **OK**.
+
 ---
 
 ### 1.3 Network Topology
+### 1.3 Assign Networks to VMs
 
-**IP Address Plan:**
+#### Splunk Server VM (Debian)
 
-| Device | IP Address | Hostname | Role |
-|--------|------------|----------|------|
-| **Windows Host** | none | (Your PC) | VMware hypervisor + Splunk UI |
-| **Debian VM** | 192.168.101.128 / 10.10.10.10 | splunk-server | SIEM platform |
-| **Windows 10 VM** | 192.168.84.50 | win10-endpoint | Monitored endpoint |
-| **Ubuntu VM** | 10.10.10.12 | ubuntu-endpoint | Monitored endpoint |
-| **Kali VM** | 10.10.10.11 | kali-attacker | Attack simulation |
+- **Network Adapter 1 (NAT):**
+  - **Connection:** NAT or Custom → VMnet8
+
+- **Network Adapter 2 (Internal Lab):**
+  - **Connection:** Custom → VMnet1
+
+#### Windows Endpoint VM
+
+- Single adapter:
+  - **Connection:** Custom → VMnet1
+
+#### Ubuntu Endpoint VM
+
+- Single adapter:
+  - **Connection:** Custom → VMnet1
+
+#### Kali Attacker VM
+
+- Single adapter:
+  - **Connection:** Custom → VMnet1
+
+---
+
+### 1.4 Assign Network to VMs
+We’ll use this IP plan:
+
+| Host            | Interface | Network | Address        |
+|-----------------|-----------|---------|----------------|
+| Splunk server   | NAT       | VMnet8  | 192.168.101.X  |
+| Splunk server   | Internal  | VMnet1  | 10.10.10.10    |
+| Windows endpoint| Internal  | VMnet1  | 10.10.10.13    |
+| Ubuntu endpoint | Internal  | VMnet1  | 10.10.10.12    |
+| Kali attacker   | Internal  | VMnet1  | 10.10.10.11    |
+
 
 > ⚠️ **Security Note:**  
 > - The physical host is used ONLY for VMware and accessing Splunk Web UI  
 > - All monitored endpoints and attacks happen in isolated VMs  
 > - This protects your main system from attack simulations
 ---
-
-### 1.4 Assign Network to VMs
-
-**For each VM:**
-
-1. Right-click VM → Settings → Network Adapter
-2. Select: `Custom: VMnet8 (Host-only)`
-
-![Screenshot: VM network settings](../Pictures/VM-newtwork-setting.PNG)
-
-### 1.5 Access Splunk from Host
-
-1. Power off splunk-server
-2. Right-click `VM → Settings → add Network Adapter`
-3. Check: ☑ NAT
- → Cela crée une interface uniquement dédiée à l’accès Splunk depuis l’hôte, sans exposer tout le réseau du lab.
-
-4. Démarrer la VM Splunk
-
-5. Afficher l'adresse NAT depuis la VM :
-   ```bash
-   ip a
-
-
-
-| Field| Value|
-|--------|--------|
-| **Host port** | 8000 |
-| **Guest ip** | 192.168.84.130 |
-| **Guest port** | 8000 |
-| **Protocol** | TCP |
-
-5. Click `OK` → Start VM
-
-> -  Now you can acess at splunk UI on your host (http://localhost:8000)
