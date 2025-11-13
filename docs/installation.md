@@ -161,9 +161,9 @@ No output → VMnet8 adapter does not exist on host
 3. Check: ☑ NAT
  → Cela crée une interface uniquement dédiée à l’accès Splunk depuis l’hôte, sans exposer tout le réseau du lab.
 
-4. **Démarrer la VM Splunk**
+4. Démarrer la VM Splunk
 
-5. **Afficher l'adresse NAT depuis la VM :**
+5. Afficher l'adresse NAT depuis la VM :
    ```bash
    ip a
 
