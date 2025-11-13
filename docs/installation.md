@@ -214,12 +214,25 @@ We’ll use this IP plan:
 
 This section covers the complete installation and configuration of your Splunk Enterprise server on Debian 13.
 
----
+### 2.1 Download and Install Splunk Enterprise
 
-### 2.1 Update System
-
-Before installing Splunk, update your Debian system:
+1. Download the Splunk Enterprise .deb package from the official website or use wget:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+wget -O splunk-10.0.1-c486717c322b-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/10.0.1/linux/splunk-10.0.1-c486717c322b-linux-amd64.deb"
 ```
+2. Install the package:
+```bash
+sudo dpkg -i splunk-10.0.1-c486717c322b-linux-amd64.deb
+```
+2.2 Start Splunk and Accept License
+Navigate to the Splunk installation directory and start Splunk for the first time:
+```bash
+cd /opt/splunk/bin
+sudo ./splunk start --accept-license
+```
+During the first start, you'll be prompted to create an admin account:
+
+- Username: admin
+- Password: Choose a strong password (min. 8 characters)
+
